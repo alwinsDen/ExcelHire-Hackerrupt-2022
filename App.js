@@ -13,6 +13,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 import MainPage from './pages/Login';
 import ProductPage2 from './pages/ProductPage2';
 import ProductPage3 from './pages/ProductPage3';
+import ProductPage4 from './pages/ProductPage4';
+import ProductPage5 from './pages/ProductPage5';
 
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
@@ -22,7 +24,7 @@ const App: () => Node = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="product-page3">
+      <Stack.Navigator initialRouteName="product-page5">
         <Stack.Screen
           name={'login'}
           component={MainPage}
@@ -36,6 +38,16 @@ const App: () => Node = () => {
         <Stack.Screen
           name={'product-page3'}
           component={ProductPage3}
+          options={{header: () => null}}
+        />
+        <Stack.Screen
+          name={'product-page4'}
+          component={ProductPage4}
+          options={{header: () => null}}
+        />
+        <Stack.Screen
+          name={'product-page5'}
+          component={ProductPage5}
           options={{header: () => null}}
         />
       </Stack.Navigator>
