@@ -4,7 +4,7 @@ import CCheader from './CCheader';
 import {TextInput} from 'react-native-paper';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {ScrollView} from 'react-native';
-const ProductPage7 = () => {
+const ProductPage7 = ({navigation}) => {
   return (
     <View
       style={{
@@ -32,9 +32,13 @@ const ProductPage7 = () => {
           marginTop: 7,
           alignItems: 'center',
         }}>
-        <View>
+        <TouchableOpacity
+          onPress={()=>{
+            navigation.goBack()
+          }}
+        >
           <FontAwesome5 name={'arrow-left'} color={'black'} size={20} />
-        </View>
+        </TouchableOpacity>
         <View
           style={{
             display: 'flex',

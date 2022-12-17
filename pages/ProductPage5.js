@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import CCheader from './CCheader';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-const ProductPage5 = () => {
+const ProductPage5 = ({navigation}) => {
   return (
     <View>
       <CCheader />
@@ -19,7 +19,13 @@ const ProductPage5 = () => {
           alignItems: 'center',
           padding: 10,
         }}>
-        <FontAwesome5 name={'arrow-left'} color={'#000'} size={25} />
+          <TouchableOpacity 
+          onPress={()=>{
+            navigation.goBack();
+          }}
+          >
+            <FontAwesome5 name={'arrow-left'} color={'#000'} size={25} />
+          </TouchableOpacity>
         <Text style={{fontSize: 28, marginLeft: 10}}>Add Company Details</Text>
       </View>
       <ScrollView

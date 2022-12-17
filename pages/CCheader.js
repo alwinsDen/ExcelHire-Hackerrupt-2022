@@ -1,7 +1,8 @@
 import React from 'react';
 import {Text, View} from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-const CCheader = () => {
+const CCheader = ({navigation}) => {
   return (
     <View
       style={{
@@ -40,7 +41,13 @@ const CCheader = () => {
           borderTopLeftRadius: 13,
           borderBottomLeftRadius: 13,
         }}>
-        <Text>Carl J</Text>
+        <TouchableOpacity>
+          <Text
+          onPress={()=>{
+            navigation.navigate("product-page3")
+          }}
+          >Carl J</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

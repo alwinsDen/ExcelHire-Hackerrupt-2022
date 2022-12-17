@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {TextInput} from 'react-native-paper';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-const MainPage = () => {
+const MainPage = ({navigation}) => {
   const [userEmail, setUserEmail] = React.useState(null);
   const [userPassword, setUserPassword] = React.useState(null);
   return (
@@ -91,6 +91,11 @@ const MainPage = () => {
         <TouchableOpacity
           onPress={() => {
             console.log(userEmail, userPassword);
+            if (userEmail==="admin" && userPassword==="admin") {
+              navigation.navigate("product-page4")
+            } else {
+              navigation.navigate("product-page")
+            }
           }}>
           <View
             style={{
@@ -103,7 +108,7 @@ const MainPage = () => {
               borderRadius: 10,
               ...styles.loginButton,
             }}>
-            <Text style={{fontSize: 20}}>Login</Text>
+            <Text style={{fontSize: 20}} >Login</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity>

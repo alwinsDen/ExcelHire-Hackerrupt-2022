@@ -1,10 +1,10 @@
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {Text, TouchableOpacity, View, Alert} from 'react-native';
 import CCheader from './CCheader';
 import {TextInput} from 'react-native-paper';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {ScrollView} from 'react-native';
-const ProductPage4 = () => {
+const ProductPage4 = ({navigation}) => {
   return (
     <View
       style={{
@@ -13,7 +13,7 @@ const ProductPage4 = () => {
         alignItems: 'center',
         backgroundColor: '#F0F0F0',
       }}>
-      <CCheader />
+      <CCheader navigation={navigation}/>
       <TextInput
         style={{
           width: '96%',
@@ -31,7 +31,11 @@ const ProductPage4 = () => {
           width: '95%',
           marginTop: 7,
         }}>
-        <TouchableOpacity>
+        <TouchableOpacity
+        onPress={()=>{
+          navigation.navigate("product-page6",{state:"Create"})
+        }}
+        >
           <View
             style={{
               display: 'flex',
@@ -181,7 +185,24 @@ const ProductPage4 = () => {
                     flexDirection: 'row',
                     marginTop: 5,
                   }}>
-                  <TouchableOpacity>
+                  <TouchableOpacity
+                  onPress={()=>{
+                    const createTwoButtonAlert = () =>
+                    Alert.alert(
+                      "Delete job vacancy?",
+                      "Are you sure? This can't undone.",
+                      [
+                        {
+                          text: "Cancel",
+                          onPress: () => console.log("Cancel Pressed"),
+                          style: "cancel"
+                        },
+                        { text: "Confirm", onPress: () => console.log("OK Pressed") }
+                      ]
+                    );
+                    createTwoButtonAlert(); 
+                  }}
+                  >
                     <View
                       style={{
                         width: 75,
@@ -201,7 +222,11 @@ const ProductPage4 = () => {
                       </Text>
                     </View>
                   </TouchableOpacity>
-                  <TouchableOpacity>
+                  <TouchableOpacity
+                  onPress={()=>{
+                    navigation.navigate("product-page6",{state:"Edit"})
+                  }}
+                  >
                     <View
                       style={{
                         width: 75,
@@ -222,7 +247,11 @@ const ProductPage4 = () => {
                       </Text>
                     </View>
                   </TouchableOpacity>
-                  <TouchableOpacity>
+                  <TouchableOpacity
+                  onPress={()=>{
+                    navigation.navigate("product-page7")
+                  }}
+                  >
                     <View
                       style={{
                         width: 75,
@@ -250,8 +279,8 @@ const ProductPage4 = () => {
                     flexDirection: 'row',
                     alignItems: 'center',
                   }}>
-                  <FontAwesome5 name={'globe'} color={'#000'} size={20} />
-                  <Text style={{marginLeft: 4, color: '#000'}}>
+                  <FontAwesome5 name={'globe'} color={'#979994'} size={20} />
+                  <Text style={{marginLeft: 4, color: '#979994'}}>
                     203 applicants
                   </Text>
                 </View>

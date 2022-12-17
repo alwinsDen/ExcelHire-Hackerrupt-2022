@@ -8,7 +8,8 @@ import {
 } from 'react-native';
 import CCheader from './CCheader';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-const ProductPage6 = () => {
+const ProductPage6 = ({route,navigation}) => {
+  const {state} = route.params;
   return (
     <View>
       <CCheader />
@@ -19,8 +20,14 @@ const ProductPage6 = () => {
           alignItems: 'center',
           padding: 10,
         }}>
-        <FontAwesome5 name={'arrow-left'} color={'#000'} size={25} />
-        <Text style={{fontSize: 28, marginLeft: 10}}>Create job</Text>
+          <TouchableOpacity
+          onPress={()=>{
+            navigation.goBack();
+          }}
+          >
+            <FontAwesome5 name={'arrow-left'} color={'#000'} size={25} />
+          </TouchableOpacity>
+        <Text style={{fontSize: 28, marginLeft: 10}} >{state} job</Text>
       </View>
       <ScrollView
         style={{

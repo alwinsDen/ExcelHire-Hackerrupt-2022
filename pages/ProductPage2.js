@@ -1,12 +1,12 @@
 import React from 'react';
-import {Text, View, Image, TouchableOpacity} from 'react-native';
+import {Text, View, Alert, TouchableOpacity} from 'react-native';
 import CCheader from './CCheader';
 import {ScrollView} from 'react-native-gesture-handler';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-const ProductPage2 = () => {
+const ProductPage2 = ({navigation}) => {
   return (
-    <ScrollView style={{backgroundColor: '#F0F0F0'}}>
-      <CCheader />
+    <ScrollView style={{backgroundColor: '#d4d6d6'}}>
+      <CCheader navigation={navigation}/>
       <Text
         style={{
           color: 'black',
@@ -234,7 +234,23 @@ const ProductPage2 = () => {
                 marginLeft: 56,
                 marginTop: 15,
               }}>
-              <View
+              <TouchableOpacity
+              onPress={()=>{
+                  const createTwoButtonAlert = () =>
+                  Alert.alert(
+                    "Job Application",
+                    "Are you sure want to apply at Amazon India limited?",
+                    [
+                      {
+                        text: "Maybe later",
+                        onPress: () => console.log("Cancel Pressed"),
+                        style: "cancel"
+                      },
+                      { text: "Confirm Application", onPress: () => console.log("OK Pressed") }
+                    ]
+                  );
+                  createTwoButtonAlert();
+                }}
                 style={{
                   width: 104,
                   backgroundColor: '#5C84BF',
@@ -250,7 +266,7 @@ const ProductPage2 = () => {
                   }}>
                   APPLY
                 </Text>
-              </View>
+              </TouchableOpacity>
             </TouchableOpacity>
           </View>
         );
