@@ -5,6 +5,7 @@ import {TextInput} from 'react-native-paper';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {ScrollView} from 'react-native';
 const ProductPage7 = ({navigation}) => {
+  const [modalState, setModalState] = React.useState(false);
   return (
     <View
       style={{
@@ -46,7 +47,11 @@ const ProductPage7 = ({navigation}) => {
             alignItems: 'center',
           }}>
           <Text>sort by:&nbsp;&nbsp;</Text>
-          <TouchableOpacity>
+          <TouchableOpacity
+          onPress={()=>{
+            setModalState(state=>!state)
+          }}
+          >
             <View
               style={{
                 display: 'flex',
@@ -68,16 +73,40 @@ const ProductPage7 = ({navigation}) => {
                 }}>
                 over-due&nbsp;&nbsp;
               </Text>
-              <FontAwesome5 name={'caret-down'} color={'#6B9FEE'} size={20} />
+              <FontAwesome5 name={!modalState ? 'caret-down' : "caret-up"} color={'#6B9FEE'} size={20} />
             </View>
           </TouchableOpacity>
+          {modalState && <View style={{
+                  position:"absolute",
+                  bottom:-73,
+                  right: 0,
+                  backgroundColor:"#ffffff",
+                  width: 110,
+                  zIndex:10,
+                  borderWidth:2,
+                  borderColor:"#6B9FEE",
+                  borderRadius: 5,
+                  display:"flex",
+                  alignItems:"flex-end",
+                  paddingRight: 4,
+                  height: 70,
+                  justifyContent:"space-between"
+                }}>
+                  {
+                    ["over-due","applied","blocked"].map((val,index)=>{
+                      return <TouchableOpacity>
+                        <Text style={{color:"#6B9FEE"}}>{val}</Text>
+                      </TouchableOpacity>
+                    })
+                  }
+                </View>}
         </View>
       </View>
       <ScrollView
         style={{
           width: '100%',
         }}>
-        {[1, 2, 4, 4, 5, 6, 7, 3].map((val, index) => {
+        {user_list.map((val, index) => {
           return (
             <View
               style={{
@@ -85,14 +114,15 @@ const ProductPage7 = ({navigation}) => {
                 flexDirection: 'row',
                 alignItems: 'center',
                 width: '90%',
-                padding: 10,
+                paddingTop: 10,   
+                paddingBottom: 10,
                 borderBottomWidth: 1,
                 marginLeft: 10,
               }}>
               <View
                 style={{
                   color: '#000',
-                  backgroundColor: '#e36464',
+                  backgroundColor: "coral",
                   width: 70,
                   height: 70,
                   borderRadius: 35,
@@ -100,7 +130,7 @@ const ProductPage7 = ({navigation}) => {
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}>
-                <Text style={{fontSize: 35, color: '#fff'}}>CJ</Text>
+                <Text style={{fontSize: 35, color: '#fff'}}>{val.name.split(" ")[0][0]}{val.name.split(" ")[1][0]}</Text>
               </View>
               <View
                 style={{
@@ -111,29 +141,33 @@ const ProductPage7 = ({navigation}) => {
                     fontSize: 18,
                     color: '#000',
                   }}>
-                  Carl Jaskson
+                  {val.name}
                 </Text>
                 <Text
                   style={{
                     fontSize: 18,
                     color: '#000',
                   }}>
-                  Principal Engineer
+                  {val.desig}
                 </Text>
                 <Text
                   style={{
                     letterSpacing: 2,
                     fontSize: 14,
                     fontStyle: 'italic',
-                    backgroundColor: '#A55651',
+                    backgroundColor: val.status ? '#A55651' : 'red',
                     borderRadius: 5,
                     color: '#fff',
                     paddingLeft: 5,
+                    width: 150,
+                    textAlign:"center"
                   }}>
-                  missed interview
+                  {val.status ? 'missed interview' : 'blocked'}
                 </Text>
               </View>
-              <View
+              {
+                val.status && <>
+                <View
                 style={{alignItems: 'center', position: 'absolute', right: 10}}>
                 <FontAwesome5 name={'ban'} color={'#d32020'} size={20} />
                 <Text style={{fontSize: 18, color: '#d32020'}}>block</Text>
@@ -142,7 +176,8 @@ const ProductPage7 = ({navigation}) => {
                 style={{alignItems: 'center', position: 'absolute', right: 70}}>
                 <FontAwesome5 name={'question'} color={'#ff8c07'} size={20} />
                 <Text style={{fontSize: 18, color: '#ff8c07'}}>query</Text>
-              </View>
+              </View></>
+              }
             </View>
           );
         })}
@@ -151,3 +186,11 @@ const ProductPage7 = ({navigation}) => {
   );
 };
 export default ProductPage7;
+const user_list = [
+  {name:"Carl Jackson",desig:"Marketing Manager",status: true},
+  {name:"Anirudh K",desig:"Member at PES",status: false},
+  {name:"Pranava K",desig:"Member at PES",status: true},
+  {name:"Darshan T",desig:"Member at PES",status: false},
+  {name:"Alwin T",desig:"Member at PES",status: true},
+]
+const colors = ["light blue", "light pink","light green"]

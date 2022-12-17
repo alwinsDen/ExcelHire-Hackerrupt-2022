@@ -5,6 +5,7 @@ import {TextInput} from 'react-native-paper';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {ScrollView} from 'react-native';
 const ProductPage4 = ({navigation}) => {
+  const [modalState, setModalState] = React.useState(false);
   return (
     <View
       style={{
@@ -49,7 +50,7 @@ const ProductPage4 = ({navigation}) => {
               backgroundColor: '#fff',
               borderRadius: 5,
             }}>
-            <FontAwesome5 name={'plus'} color={'black'} size={20} />
+            <FontAwesome5 name={'plus'} color={'#6B9FEE'} size={20} />
             <Text
               style={{
                 marginLeft: 4,
@@ -66,7 +67,9 @@ const ProductPage4 = ({navigation}) => {
             alignItems: 'center',
           }}>
           <Text>sort by:&nbsp;&nbsp;</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>{
+            setModalState(state=>!state)
+          }}>
             <View
               style={{
                 display: 'flex',
@@ -91,6 +94,31 @@ const ProductPage4 = ({navigation}) => {
               <FontAwesome5 name={'caret-down'} color={'#6B9FEE'} size={20} />
             </View>
           </TouchableOpacity>
+          {modalState && <View style={{
+                  position:"absolute",
+                  bottom:-73,
+                  right: 0,
+                  backgroundColor:"#ffffff",
+                  width: 130,
+                  zIndex:10,
+                  borderWidth:2,
+                  borderColor:"#6B9FEE",
+                  borderRadius: 5,
+                  display:"flex",
+                  alignItems:"flex-end",
+                  paddingRight: 4,
+                  height: 70,
+                  justifyContent:"space-between"
+                }}>
+                  {
+                    ["latest","oldest","No. of application"].map((val,index)=>{
+                      return <TouchableOpacity>
+                        <Text style={{color:"#6B9FEE"}}>{val}</Text>
+                      </TouchableOpacity>
+                    })
+                  }
+                </View>
+        }
         </View>
       </View>
       <ScrollView
@@ -98,7 +126,7 @@ const ProductPage4 = ({navigation}) => {
           width: '95%',
           paddingTop: 15,
         }}>
-        {[1, 32, 2, 2, 4].map((val, index) => {
+        {test_data.map((val, index) => {
           return (
             <View>
               <View
@@ -115,7 +143,7 @@ const ProductPage4 = ({navigation}) => {
                       fontSize: 18,
                       color: '#000',
                     }}>
-                    Bachelors Intern Software engineer
+                    {val.title}
                   </Text>
                   <Text
                     style={{
@@ -123,7 +151,7 @@ const ProductPage4 = ({navigation}) => {
                       fontStyle: 'italic',
                       textDecorationLine: 'underline',
                     }}>
-                    Amazon India
+                    {val.comp}
                   </Text>
                 </View>
                 <View>
@@ -131,7 +159,7 @@ const ProductPage4 = ({navigation}) => {
                     style={{
                       fontSize: 16,
                     }}>
-                    Oct 22 2022
+                    {val.date}
                   </Text>
                 </View>
               </View>
@@ -151,7 +179,7 @@ const ProductPage4 = ({navigation}) => {
                   }}>
                   Tags:{' '}
                 </Text>
-                {[1, 2, 344, 5].map((val, index) => {
+                {val.tags.map((vals, index) => {
                   return (
                     <View
                       style={{
@@ -167,7 +195,7 @@ const ProductPage4 = ({navigation}) => {
                         marginLeft: 3,
                         marginTop: 5,
                       }}>
-                      <Text style={{color: '#fff'}}>#Mechanical</Text>
+                      <Text style={{color: '#fff'}}>#{vals}</Text>
                     </View>
                   );
                 })}
@@ -281,7 +309,7 @@ const ProductPage4 = ({navigation}) => {
                   }}>
                   <FontAwesome5 name={'globe'} color={'#979994'} size={20} />
                   <Text style={{marginLeft: 4, color: '#979994'}}>
-                    203 applicants
+                    {val.applicants} applicants
                   </Text>
                 </View>
               </View>
@@ -301,3 +329,9 @@ const ProductPage4 = ({navigation}) => {
   );
 };
 export default ProductPage4;
+const test_data = [
+  {title:"Intern at Google", comp:"Google", "tags": ["Mechanical","Physics","History","Alemeda"],applicants:210,date:"Oct 22 2022"},
+  {title:"Cheif of Engineering", comp:"Tesla", "tags": ["Civi","Math","cars","test"],applicants:32, date:"Oct 29 2022"},
+  {title:"Head of Planning", comp:"FTX Research", "tags": ["FTX","CS","random","Quick Money"],applicants:243, date:"Nov 11 2022"},
+  {title:"Production designer", comp:"Nestle India", "tags": ["computers","CS","random"],applicants:21, date:"Nov 29 2022"},
+]

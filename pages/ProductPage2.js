@@ -116,7 +116,7 @@ const ProductPage2 = ({navigation}) => {
           }}>
           Tags:{' '}
         </Text>
-        {[1, 2, 344, 5].map((val, index) => {
+        {user_tags.map((val, index) => {
           return (
             <View
               style={{
@@ -132,7 +132,7 @@ const ProductPage2 = ({navigation}) => {
                 marginLeft: 3,
                 marginTop: 5,
               }}>
-              <Text style={{color: '#fff'}}>#Mechanical</Text>
+              <Text style={{color: '#fff'}}>#{val}</Text>
             </View>
           );
         })}
@@ -157,7 +157,7 @@ const ProductPage2 = ({navigation}) => {
             style={{
               backgroundColor: '#ffffff',
               width: '95%',
-              height: 225,
+              height: 240,
               borderRadius: 22,
               paddingTop: 5,
               marginLeft: 9,
@@ -212,7 +212,7 @@ const ProductPage2 = ({navigation}) => {
                 flexWrap: 'wrap',
                 marginLeft: 44,
               }}>
-              {[1, 3, 4, 5].map((val, index) => {
+              {["calendar", "globe", "dollar-sign", "home"].map((val, index) => {
                 return (
                   <View
                     style={{
@@ -220,9 +220,11 @@ const ProductPage2 = ({navigation}) => {
                       flexDirection: 'row',
                       marginLeft: 14,
                       marginTop: 3,
+                      alignItems:"center",
+                      marginTop: 5
                     }}>
-                    <FontAwesome5 name={'globe'} color={'#000'} size={20} />
-                    <Text style={{marginLeft: 4, color: '#000'}}>
+                    <FontAwesome5 name={val} color={'grey'} size={20} />
+                    <Text style={{marginLeft: 4, color: 'grey'}}>
                       203 applicants
                     </Text>
                   </View>
@@ -277,3 +279,4 @@ const ProductPage2 = ({navigation}) => {
   );
 };
 export default ProductPage2;
+const user_tags = ["mechanical","engineering","blockchain","data sci","cyber secu","networks","marketing"]

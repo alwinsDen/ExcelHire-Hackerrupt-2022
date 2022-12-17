@@ -12,7 +12,7 @@ const ProductPage6 = ({route,navigation}) => {
   const {state} = route.params;
   return (
     <View>
-      <CCheader />
+      <CCheader navigation={navigation}/>
       <View
         style={{
           display: 'flex',
@@ -34,7 +34,7 @@ const ProductPage6 = ({route,navigation}) => {
           display: 'flex',
           flexDirection: 'column',
         }}>
-        {[1, 23, 5, 6, 4].map((val, index) => {
+        {["Company Name","Company Website","Comany description", "Company Location"].map((val, index) => {
           return (
             <View
               style={{
@@ -53,7 +53,7 @@ const ProductPage6 = ({route,navigation}) => {
                   fontStyle: 'italic',
                   marginTop: 3,
                 }}>
-                Company Name
+                {val}
               </Text>
               <TextInput
                 placeholder="Google"
