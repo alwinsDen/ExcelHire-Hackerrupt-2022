@@ -89,14 +89,15 @@ const MainPage = ({navigation}) => {
           marginTop: 34,
         }}>
         <TouchableOpacity
-          onPress={() => {
-            console.log(userEmail, userPassword);
+          onPress={
+            async() => {
             if (userEmail==="admin" && userPassword==="admin") {
               navigation.navigate("product-page4")
             } else {
               navigation.navigate("product-page")
             }
-          }}>
+          }
+          }>
           <View
             style={{
               width: 154,
