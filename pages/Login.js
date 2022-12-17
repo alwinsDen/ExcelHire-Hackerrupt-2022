@@ -1,10 +1,10 @@
 import React from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
 import {TextInput} from 'react-native-paper';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 const MainPage = () => {
-  // eslint-disable-next-line react/jsx-no-undef
+  const [userEmail, setUserEmail] = React.useState(null);
+  const [userPassword, setUserPassword] = React.useState(null);
   return (
     <View
       style={{
@@ -37,7 +37,7 @@ const MainPage = () => {
           borderTopWidth: 2,
           borderBottomWidth: 2,
           color: 'AAAAAA',
-          marginTop: 103,
+          marginTop: 80,
         }}>
         <FontAwesome5 name={'user-alt'} color={'#AAAAAA'} size={20} />
         <TextInput
@@ -47,6 +47,7 @@ const MainPage = () => {
             width: 310,
           }}
           autoCorrect={false}
+          onChangeText={nextText => setUserEmail(nextText)}
           placeholder={'Enter the user email address'}></TextInput>
       </View>
       <View
@@ -72,6 +73,11 @@ const MainPage = () => {
             width: 310,
             color: 'AAAAAA',
           }}
+          onChangeText={nextText => {
+            console.log(nextText);
+            setUserPassword(nextText);
+          }}
+          secureTextEntry={true}
           placeholder={'Enter the user password'}></TextInput>
       </View>
       <View
@@ -82,7 +88,10 @@ const MainPage = () => {
           justifyContent: 'space-between',
           marginTop: 34,
         }}>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            console.log(userEmail, userPassword);
+          }}>
           <View
             style={{
               width: 154,
@@ -112,6 +121,25 @@ const MainPage = () => {
             <Text style={{fontSize: 20}}>Register</Text>
           </View>
         </TouchableOpacity>
+      </View>
+      <View>
+        <Text
+          style={{
+            textAlign: 'center',
+            fontSize: 32,
+            marginTop: 30,
+            color: '#fff',
+          }}>
+          “The app recommended me the job best-fit for my skillset”
+        </Text>
+        <Text
+          style={{
+            textAlign: 'center',
+            fontSize: 14,
+            color: '#fff',
+          }}>
+          --Vaishnavi Verma, Hr specialist
+        </Text>
       </View>
     </View>
   );
